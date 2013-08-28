@@ -12,4 +12,12 @@ namespace fibonacci
             this.Data.Add("numberMessage", "Enter a number greater than 2!");
         }
     }
+
+    class NumberTooBigException : Exception
+    {
+        public NumberTooBigException()
+        {
+            this.Data.Add("numberMessage", "Enter a number smaller than 47!");
+        }
+    }
 }

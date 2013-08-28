@@ -28,12 +28,25 @@ namespace fibonacci
                     {
                         throw new NumberTooSmallException();
                     }
+                    else if (steps > 47)
+                    {   // bei fibonnaci-sequenzen > 47 läuft int über
+                        throw new NumberTooBigException();
+                    }
                     fibIter(steps);
                     break;
                 }
-                catch (NumberTooSmallException n)
+                catch (Exception n)
                 {
-                    Console.WriteLine(n.Data["numberMessage"]);
+                    Console.WriteLine("Invalid Input!");
+                    if (n.GetType() == typeof(NumberTooSmallException) || n.GetType() == typeof(NumberTooBigException))
+                    {
+                        Console.WriteLine(n.Data["numberMessage"]);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter only integers bigger than 2 and smaller than 48");
+                        Debug.WriteLine(n);
+                    }
                 }
             }
             Console.ReadKey();
