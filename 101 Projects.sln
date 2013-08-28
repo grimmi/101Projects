@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "countVowels", "countVowels\countVowels.csproj", "{918416C7-C822-4A7C-BE35-8DB137A231DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fibonacci", "fibonacci\fibonacci.csproj", "{D7DD5CC6-5CF6-4238-9CE6-B24455824295}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 		{918416C7-C822-4A7C-BE35-8DB137A231DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{918416C7-C822-4A7C-BE35-8DB137A231DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{918416C7-C822-4A7C-BE35-8DB137A231DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7DD5CC6-5CF6-4238-9CE6-B24455824295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7DD5CC6-5CF6-4238-9CE6-B24455824295}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7DD5CC6-5CF6-4238-9CE6-B24455824295}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7DD5CC6-5CF6-4238-9CE6-B24455824295}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
