@@ -46,6 +46,9 @@ namespace fibonacci
             int f2 = 0;
             for (int i = 0; i < steps; i++)
             {
+                fibSum = i == 0 ? 0 : i == 1 ? 1 : fibSum = f1 + f2; int tmp = f1; f1 = fibSum; f2 = tmp;
+                // Der Einzeiler oben ist gleichbedeutend mit dem folgenden if / else if / else - Konstrukt
+                /* 
                 if (i == 0)
                 {
                     fibSum = 0;
@@ -56,11 +59,12 @@ namespace fibonacci
                 }
                 else
                 {
-                    int tmp = f1;
                     fibSum = f1 + f2;
+                    int tmp = f1;
                     f1 = fibSum;
                     f2 = tmp;
                 }
+                 */
                 Console.WriteLine("{0}", fibSum);
             }            
         }
