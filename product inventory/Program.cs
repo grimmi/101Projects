@@ -82,7 +82,7 @@ namespace product_inventory
             Product p = stock.Find(prod => prod.id.Equals(id));
             if (p != null)
             {
-                if (p.quantity > count)
+                if (p.quantity >= count)
                 {
                     p.quantity -= count;
                     Console.WriteLine("{0} of {1} removed! New stock of {1}: {2}", count, p.id, p.quantity);
@@ -120,8 +120,7 @@ namespace product_inventory
 
         public string getText()
         {
-            string ret = String.Format("{0}: {1}EUR ({2} in stock) | overall value: {3}", this.id, this.price, this.quantity, this.getValueOfProduct());
-            return ret;
+            return String.Format("{0}: {1}EUR ({2} in stock) | overall value: {3}", this.id, this.price, this.quantity, this.getValueOfProduct());
         }
 
         public bool Equals(Product p)
