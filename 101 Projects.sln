@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fibonacci", "fibonacci\fibo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "factorial", "factorial\factorial.csproj", "{575FD118-7AD3-49F1-9FDD-4ABD2A79EBFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "palindrome", "palindrome\palindrome.csproj", "{0058868A-17D6-4C0B-8501-B63C54F6B7E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,10 @@ Global
 		{575FD118-7AD3-49F1-9FDD-4ABD2A79EBFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{575FD118-7AD3-49F1-9FDD-4ABD2A79EBFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{575FD118-7AD3-49F1-9FDD-4ABD2A79EBFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0058868A-17D6-4C0B-8501-B63C54F6B7E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0058868A-17D6-4C0B-8501-B63C54F6B7E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0058868A-17D6-4C0B-8501-B63C54F6B7E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0058868A-17D6-4C0B-8501-B63C54F6B7E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
