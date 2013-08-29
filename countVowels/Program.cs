@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 /*
  * Count Vowels - Enter a string and the program counts the number of vowels in the text. For added complexity have it report a sum of each vowel found.
  * Erste Version: 28.08.2013
- * Ich wollte hier mal ein Prädikat ausprobieren -> Zeile 20 / Zeile 29
+ * Ich wollte hier mal ein Prädikat ausprobieren -> Zeile 18 / Zeile 26
  * Ich muss mal gucken, ob das Einfügen in das Dictionary irgendwie eleganter geht. Ein Einzeiler wäre schön.
  */
 namespace countVowels
