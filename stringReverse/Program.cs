@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using stringReverse;
 
 /*
  * Einfaches Programm, das einen eingegebenen String umdreht
@@ -21,12 +22,7 @@ namespace stringReverse
                 string inputString = Console.ReadLine();
                 if (!inputString.Equals(""))
                 {
-                    string reverseString = "";
-                    for (int i = inputString.Length-1; i >= 0; i--)
-                    {
-                        reverseString += inputString[i];
-                    }
-                    Console.WriteLine("Reverse String: {0}", reverseString);
+                    Console.WriteLine("Reverse String: {0}", inputString.reverseString());
                     break;
                 }
                 else
