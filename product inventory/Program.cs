@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 /*
  * Product Inventory Project - Create an application which manages an inventory of products. Create a product class which has a price, id, and quantity on hand. Then create an inventory class which keeps track of various products and can sum up the inventory value.
@@ -21,6 +19,10 @@ namespace product_inventory
             i.add(new Product("abcde", price: 5.13M, quantity: 10));
             i.add(new Product("abcde", price: 7.12M, quantity: 15));
             i.add(new Product("IBM021302", price: 132321.00M, quantity: 2));
+            i.print();
+            i.removeStock("abcde", 7);
+            i.print();
+            i.removeStock("IBM021302", 5);
             i.print();
             Console.ReadKey();
         }
@@ -47,13 +49,12 @@ namespace product_inventory
                 p.print();
             }
             Console.WriteLine("Overall value in stock: {0}EUR", this.getCompleteValue());
+            Console.WriteLine("====================");
         }
 
         public decimal getCompleteValue()
         {
-            decimal sum = 0.00M;
-            stock.ForEach(product => sum += (product.price * product.quantity));
-            return sum;
+            return stock.Sum(p => (p.price * p.quantity));
         }
 
         public void add(Product p)
@@ -71,6 +72,24 @@ namespace product_inventory
                     inStock.quantity += p.quantity;
                     inStock.price = p.price;
                     Console.WriteLine("Updated product: {0}", inStock.getText());
+                }
+            }
+        }
+
+        public void removeStock(string id, int count)
+        {
+            Console.WriteLine("Trying to remove {0} of {1}\r\n---------------------------------", count, id);
+            Product p = stock.Find(prod => prod.id.Equals(id));
+            if (p != null)
+            {
+                if (p.quantity > count)
+                {
+                    p.quantity -= count;
+                    Console.WriteLine("{0} of {1} removed! New stock of {1}: {2}", count, p.id, p.quantity);
+                }
+                else
+                {
+                    Console.WriteLine("Insufficient stock! Only {0} of {1} are available!", p.quantity, p.id);
                 }
             }
         }
