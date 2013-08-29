@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using stringReverse;
-
 /*
  * Einfaches Programm, das einen eingegebenen String umdreht
  * Erste Version: 28.08.2013 20:18
