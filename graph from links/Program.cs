@@ -17,14 +17,22 @@ namespace graph_from_links
         {
             List<KeyValuePair<int, int>> links = new List<KeyValuePair<int, int>>();
             links.Add(new KeyValuePair<int, int>(1, 2));
-            links.Add(new KeyValuePair<int, int>(1, 3));
-            links.Add(new KeyValuePair<int, int>(2, 5));
+            links.Add(new KeyValuePair<int, int>(1, 3));            
+            links.Add(new KeyValuePair<int, int>(2, 5));            
             links.Add(new KeyValuePair<int, int>(2, 4));
             links.Add(new KeyValuePair<int, int>(3, 4));
             links.Add(new KeyValuePair<int, int>(4, 5));
 
             Graph g = new Graph();
             g.createFromLinks(links);
+            g.start.print();
+            Node zwei = g.getNodeById(2);
+            zwei.print();
+            Node drei = g.getNodeById(3);
+            drei.print();
+            Node vier = g.getNodeById(4);
+            vier.print();
+            Console.ReadKey();
         }
 
     }
@@ -67,6 +75,17 @@ namespace graph_from_links
             }
             return hasNeighbour;
         }
+
+        public void print()
+        {
+            Console.WriteLine("Node {0}:", this.id);
+            Console.WriteLine("Neighbours:");
+            foreach (Node n in neighbours)
+            {
+                Console.WriteLine("- Node {0}", n.id);
+            }
+            Console.WriteLine("--------------------");
+        }
     }
 
     class Graph
@@ -82,16 +101,26 @@ namespace graph_from_links
 
         public void createFromLinks(List<KeyValuePair<int, int>> links)
         {
+            //Console.WriteLine("createFromLinks...\r\n--------------");
             foreach (KeyValuePair<int,int> kvp in links)
             {
                 Node tmpNode = new Node(kvp.Key);
                 Node tmpNeighbour = new Node(kvp.Value);
+                //Console.WriteLine("pair: {0},{1}", kvp.Key, kvp.Value);
                 if (start != null)
                 {
                     Node tNode = getNodeById(tmpNode.id);
-                    if(tNode != null && tNode.hasNeighbour(tmpNeighbour))
+                    if (tNode != null)
                     {
-                        tNode.neighbours.Add(tmpNeighbour);
+                        if (!tNode.hasNeighbour(tmpNeighbour))
+                        {
+                            //Console.WriteLine("Add Neighbour {0} to {1}...", tmpNeighbour.id, tNode.id);
+                            tNode.neighbours.Add(tmpNeighbour);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Node found for {0}", tmpNode.id);
                     }
                 }
                 else
@@ -115,25 +144,16 @@ namespace graph_from_links
         public Node getNodeById(int id)
         {
             visited = new List<Node>();
+            //Console.WriteLine("getNodeById(int {0})", id);
             if (start != null)
             {
                 if (start.id == id)
                 {
-                    visited.Add(start);
                     return start;
                 }
                 else
                 {
-                    Node found = null;
-                    foreach (Node n in start.neighbours)
-                    {
-                        Node tmp = getNodeById(n,id);
-                        if (tmp != null)
-                        {
-                            found = tmp; 
-                        }
-                    }
-                    return found;
+                    return getNodeById(start, id);
                 }
             }
             return null;
@@ -141,22 +161,21 @@ namespace graph_from_links
 
         public Node getNodeById(Node n, int id)
         {
+            //Console.WriteLine("getNodeById({0},{1})", n.id, id);
             if (!visited.Contains(n))
             {
                 visited.Add(n);
                 foreach (Node neighbour in n.neighbours)
                 {
+                    //Console.WriteLine("Neighbour: {0}, Target-Id: {1}", neighbour.id, id);
                     if (neighbour.id == id)
                     {
                         return neighbour;
                     }
-                    else
-                    {
-                        foreach (Node neigh in n.neighbours)
-                        {
-                            return getNodeById(neigh, id);
-                        }
-                    }
+                }
+                foreach (Node neighbour2 in n.neighbours)
+                {
+                    return getNodeById(neighbour2, id);
                 }
             }
             return null;
