@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "palindrome", "palindrome\pa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "product inventory", "product inventory\product inventory.csproj", "{F35E8F0A-ADBC-485F-9E61-4742CEEFAA0E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "graph from links", "graph from links\graph from links.csproj", "{C1AE29F2-5E65-438A-A6F4-56029B6E3855}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{F35E8F0A-ADBC-485F-9E61-4742CEEFAA0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F35E8F0A-ADBC-485F-9E61-4742CEEFAA0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F35E8F0A-ADBC-485F-9E61-4742CEEFAA0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1AE29F2-5E65-438A-A6F4-56029B6E3855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1AE29F2-5E65-438A-A6F4-56029B6E3855}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1AE29F2-5E65-438A-A6F4-56029B6E3855}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1AE29F2-5E65-438A-A6F4-56029B6E3855}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
