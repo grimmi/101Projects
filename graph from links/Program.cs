@@ -89,7 +89,7 @@ namespace graph_from_links
                 if (start != null)
                 {
                     Node tNode = getNodeById(tmpNode.id);
-                    if (!tNode.hasNeighbour(tmpNeighbour))
+                    if(tNode != null && tNode.hasNeighbour(tmpNeighbour))
                     {
                         tNode.neighbours.Add(tmpNeighbour);
                     }
