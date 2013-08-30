@@ -13,7 +13,7 @@ namespace graph_from_links
 {
     class Program
     {
-        static void main(String[] args)
+        static void Main(String[] args)
         {
             List<KeyValuePair<int, int>> links = new List<KeyValuePair<int, int>>();
             links.Add(new KeyValuePair<int, int>(1, 2));
