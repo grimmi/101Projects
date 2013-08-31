@@ -35,7 +35,7 @@ namespace nextPrime
             Console.WriteLine("2) specific prime number");
             Console.WriteLine("3) closest prime to number");
             Console.WriteLine("4) print already calculated primes");
-            Console.WriteLine("to exit, press Ctrl + C");
+            Console.WriteLine("5) exit");
             Console.WriteLine("----------");
         }
 
@@ -48,6 +48,8 @@ namespace nextPrime
                 choice = int.Parse(inputString);
                 switch (choice)
                 {
+                    default: Console.WriteLine("Choose between the shown options!");
+                        break;
                     case 1: pressForNextPrime();
                         break;
                     case 2: showSpecificPrime();
@@ -56,7 +58,7 @@ namespace nextPrime
                         break;
                     case 4: printPrimes();
                         break;
-                    default: Console.WriteLine("Choose between the shown options!");
+                    case 5: System.Environment.Exit(0);
                         break;
                 }
             }
@@ -108,6 +110,7 @@ namespace nextPrime
             catch (Exception e)
             {
                 Console.WriteLine("Invalid input! Please enter an integer number or 'n' to return to the main program!");
+                Debug.WriteLine(e);
             }
         }
 
@@ -123,6 +126,7 @@ namespace nextPrime
             catch (Exception e)
             {
                 Console.WriteLine("Invalid input! Please enter an integer number!");
+                Debug.WriteLine(e);
             }
         }
 
@@ -255,5 +259,10 @@ namespace nextPrime
                 return prime;
             }
         }
+    }
+
+    class closeProgramException : Exception
+    {
+
     }
 }
