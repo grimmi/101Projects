@@ -103,6 +103,11 @@ namespace nextPrime
                 string spec = Console.ReadLine();
                 if (!spec.ToLower().Equals("n"))
                 {
+                    // if we have no prime numbers calculated, we need at least the 2 so the lookup works
+                    if (primes.Count() == 0)
+                    {
+                        primes.Add(2);
+                    }
                     int specPrime = int.Parse(spec);
                     Console.WriteLine("The {0} prime is: {1}", stndrdth(specPrime), getSpecificPrime(specPrime));
                 }
@@ -119,6 +124,10 @@ namespace nextPrime
             Console.WriteLine("Enter an integer to which you want the closest prime number: ");
             try
             {
+                if (primes.Count() == 0)
+                {
+                    primes.Add(2);
+                }
                 int target = int.Parse(Console.ReadLine());
                 int closePrime = primeClosestTo(target);
                 Console.WriteLine("The closest prime to {0} is: {1}", target, closePrime);
