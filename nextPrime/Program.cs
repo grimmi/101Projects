@@ -19,72 +19,114 @@ namespace nextPrime
         static void Main(string[] args)
         {
             primes = new List<int>();
-            primes.Add(2);
-            int lastPrime = 1;
-            int numberOfPrime = 0;
             while (true)
             {
-                Console.Write("Print next prime? [y]es / [n]o: ");
-                string inputString = Console.ReadLine();
-                if (inputString.ToLower().Equals("n") || inputString.ToLower().Equals("no"))
+                showMenu();
+                readInput();
+            }
+        }
+
+        private static void showMenu()
+        {
+            Console.WriteLine("Menu:\r\n----------");
+            Console.WriteLine("1) continous display of prime numbers");
+            Console.WriteLine("2) specific prime number");
+            Console.WriteLine("3) closest prime to number");
+            Console.WriteLine("4) print already calculated primes");
+            Console.WriteLine("to exit, press Ctrl + C");
+            Console.WriteLine("----------");
+        }
+
+        private static void readInput()
+        {
+            string inputString = Console.ReadLine();
+            int choice = 0;
+            try
+            {
+                choice = int.Parse(inputString);
+                switch (choice)
                 {
-                    break;
+                    case 1: pressForNextPrime();
+                        break;
+                    case 2: showSpecificPrime();
+                        break;
+                    case 3: showClosestPrime();
+                        break;
+                    case 4: printPrimes();
+                        break;
+                    default: Console.WriteLine("Choose between the shown options!");
+                        break;
                 }
-                else if (inputString.ToLower().Equals("s") || inputString.ToLower().Equals("specific"))
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+            }
+        }
+
+        public static void pressForNextPrime()
+        {
+            Console.WriteLine("Press any key for the next prime number or 'n' to exit");
+            int numberOfPrime = 0;
+            int lastPrime = 1;
+            while (true)
+            {
+                if (!Console.ReadLine().Equals("n"))
                 {
-                    while (true)
-                    {
-                        Console.Write("Please enter which prime you want to display: ");
-                        try
-                        {
-                            string spec = Console.ReadLine();
-                            if (!spec.ToLower().Equals("n") && !spec.ToLower().Equals("p"))
-                            {
-                                int specPrime = int.Parse(spec);
-                                Console.WriteLine("The {0}. prime is: {1}", specPrime, getSpecificPrime(specPrime));
-                            }
-                            else if(spec.ToLower().Equals("p"))
-                            {
-                                Console.WriteLine("Already found primes: ");
-                                int count = 1;
-                                foreach (int i in primes)
-                                {
-                                    Console.WriteLine("{0}: {1}",count,i);
-                                    count++;
-                                }
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine("Invalid input! Please enter an integer number or 'n' to return to the main program!");
-                        }
-                    }
-                }
-                else if (inputString.ToLower().Equals("c"))
-                {
-                    Console.WriteLine("Enter an integer to which you want the closest prime number: ");
-                    try
-                    {
-                        int target = int.Parse(Console.ReadLine());
-                        int closePrime = primeClosestTo(target);
-                        Console.WriteLine("The closest prime to {0} is: {1}", target, closePrime);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("Invalid input! Please enter an integer number!");
-                    }
-                }
-                else
-                {
+                    Console.WriteLine("any key to continue or 'n' to exit");
                     numberOfPrime++;
                     lastPrime = nextPrime(lastPrime + 1);
                     string numberPrime = stndrdth(numberOfPrime);
                     Console.WriteLine("{0} prime: {1}", numberPrime, lastPrime);
                 }
+                else
+                {
+                    break;
+                }
+            }
+        }
+
+        public static void showSpecificPrime()
+        {
+            Console.WriteLine("Which prime do you want to see? (press n to exit)");
+            try
+            {
+                string spec = Console.ReadLine();
+                if (!spec.ToLower().Equals("n"))
+                {
+                    int specPrime = int.Parse(spec);
+                    Console.WriteLine("The {0}. prime is: {1}", specPrime, getSpecificPrime(specPrime));
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Invalid input! Please enter an integer number or 'n' to return to the main program!");
+            }
+        }
+
+        public static void showClosestPrime()
+        {
+            Console.WriteLine("Enter an integer to which you want the closest prime number: ");
+            try
+            {
+                int target = int.Parse(Console.ReadLine());
+                int closePrime = primeClosestTo(target);
+                Console.WriteLine("The closest prime to {0} is: {1}", target, closePrime);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Invalid input! Please enter an integer number!");
+            }
+        }
+
+        public static void printPrimes()
+        {
+            Console.WriteLine("Already calculated prime numbers:");
+            int count = 1;
+            foreach (int i in primes)
+            {
+                Console.WriteLine("{0} prime: {1}", stndrdth(count), i);
+                count++;
             }
         }
 
@@ -114,7 +156,7 @@ namespace nextPrime
         }
 
         public static int nextPrime(int lastPrime)
-        {            
+        {
             int iter = lastPrime;
             while (!isPrime(iter))
             {
