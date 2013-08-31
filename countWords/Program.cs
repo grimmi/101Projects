@@ -16,7 +16,7 @@ namespace countWords
         static void Main(string[] args)
         {
             string sentence = "This is my test sentence.";
-            Console.WriteLine("'{0}' without punctuation: '{1}'", sentence, sentence.removePunctuation());
+            //Console.WriteLine("'{0}' without punctuation: '{1}'", sentence, sentence.removePunctuation());
             Console.WriteLine("'{0}' consists of {1} words.", sentence, sentence.wordCount());
             Console.WriteLine("'{0}' consists of the following {1} words:", sentence, sentence.wordCount());
             foreach (String str in sentence.wordList())
