@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,25 +14,63 @@ namespace nextPrime
 {
     class Program
     {
+        public static List<int> primes;
+
         static void Main(string[] args)
         {
+            primes = new List<int>();
+            primes.Add(2);
             int lastPrime = 0;
             int numberOfPrime = 0;
-            Console.WriteLine("Print next prime? y / n");
             while (true)
             {
+                Console.Write("Print next prime? [y]es / [n]o: ");
                 string inputString = Console.ReadLine();
-                if (inputString.Equals("n"))
+                if (inputString.ToLower().Equals("n") || inputString.ToLower().Equals("no"))
                 {
                     break;
                 }
+                else if (inputString.ToLower().Equals("s") || inputString.ToLower().Equals("specific"))
+                {
+                    while (true)
+                    {
+                        Console.Write("Please enter which prime you want to display (enter 'n' to return to the main program): ");
+                        try
+                        {
+                            string spec = Console.ReadLine();
+                            if (!spec.ToLower().Equals("n") && !spec.ToLower().Equals("p"))
+                            {
+                                int specPrime = int.Parse(spec);
+                                Console.WriteLine("The {0}. prime is: {1}", specPrime, getSpecificPrime(specPrime));
+                            }
+                            else if(spec.ToLower().Equals("p"))
+                            {
+                                Console.WriteLine("Already found primes: ");
+                                int count = 1;
+                                foreach (int i in primes)
+                                {
+                                    Console.WriteLine("{0}: {1}",count,i);
+                                    count++;
+                                }
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e);
+                            Console.WriteLine("Invalid input! Please enter an integer number or 'n' to return to the main program!");
+                        }
+                    }
+                }
                 else
                 {
-                    lastPrime = nextPrime(lastPrime + 1);
                     numberOfPrime++;
+                    lastPrime = getSpecificPrime(numberOfPrime);
                     string numberPrime = stndrdth(numberOfPrime);
                     Console.WriteLine("{0} prime: {1}", numberPrime, lastPrime);
-                    Console.WriteLine("Continue? y / n");
                 }
             }
         }
@@ -68,6 +107,7 @@ namespace nextPrime
             {
                 iter++;
             }
+            primes.Add(iter);
             return iter;
         }
 
@@ -75,7 +115,11 @@ namespace nextPrime
         {
             if (x != 1 && x != 2)
             {
-                for (int i = 2; i <= Math.Sqrt(x); i++)
+                if (x % 2 == 0)
+                {
+                    return false;
+                }
+                for (int i = 3; i <= Math.Sqrt(x); i += 2)
                 {
                     if (x % i == 0)
                     {
@@ -84,6 +128,29 @@ namespace nextPrime
                 }
             }
             return true;
+        }
+
+        public static int getSpecificPrime(int step)
+        {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            if (step > primes.Count())
+            {
+                int lastPrime = primes.Last();
+                for (int i = primes.Count(); i < step; i++)
+                {
+                    lastPrime = nextPrime(lastPrime + 1);
+                }
+                sw.Stop();
+                Console.WriteLine("Without lookup, this took {0}ms", sw.ElapsedMilliseconds);
+                return lastPrime;
+            }
+            else
+            {
+                sw.Stop();
+                Console.WriteLine("With lookup, this took {0}ms", sw.ElapsedMilliseconds);
+                return primes[step-1];
+            }
         }
     }
 }
