@@ -28,6 +28,7 @@ namespace product_inventory
         }
     }
 
+    // Inventory contains a list of Products, the stock
     class Inventory
     {
         List<Product> stock;
@@ -41,6 +42,7 @@ namespace product_inventory
         {
         }
 
+        // custom output method
         public void print()
         {
             Console.WriteLine("====================\r\nInventory List: {0}",stock.Count());
@@ -52,20 +54,24 @@ namespace product_inventory
             Console.WriteLine("====================");
         }
 
+        // calculate the value of all products, LINQ is nice :)
         public decimal getCompleteValue()
         {
             return stock.Sum(p => (p.price * p.quantity));
         }
 
+        // add a product to stock
         public void add(Product p)
         {
             if (p != null)
             {
+                // if the product isn't already in stock, add it to the list
                 if (!inInventory(p))
                 {
                     stock.Add(p);
                     Console.WriteLine("Added new product: {0}", p.getText());
                 }
+                // if we already have a product with the same id, update its price and increase quantity
                 else
                 {
                     Product inStock = stock.Find(prod => prod.Equals(p));
@@ -76,17 +82,21 @@ namespace product_inventory
             }
         }
 
+        // remove items from stock
         public void removeStock(string id, int count)
         {
             Console.WriteLine("Trying to remove {0} of {1}\r\n---------------------------------", count, id);
+            // check if we have a product with a matching id
             Product p = stock.Find(prod => prod.id.Equals(id));
             if (p != null)
             {
+                // if we have enough product on stock, just remove the wanted quantity
                 if (p.quantity >= count)
                 {
                     p.quantity -= count;
                     Console.WriteLine("{0} of {1} removed! New stock of {1}: {2}", count, p.id, p.quantity);
                 }
+                // if we don't have enough of this product, don't do it
                 else
                 {
                     Console.WriteLine("Insufficient stock! Only {0} of {1} are available!", p.quantity, p.id);
@@ -94,12 +104,15 @@ namespace product_inventory
             }
         }
 
+        // check if a product exists in stock - a product equals another one if their ids match
         public bool inInventory(Product p)
         {
             return stock.Exists(prod => prod.Equals(p));
         }
     }
 
+    // simple class to represent products
+    // each product has a price, an id and a quantity
     class Product
     {
         public decimal price { get; set; }
@@ -113,16 +126,20 @@ namespace product_inventory
             this.quantity = quantity;
         }
 
+        // let the product write to the console itself
         public void print()
         {
             Console.WriteLine(this.getText());
         }
 
+        // just return the description of the product
         public string getText()
         {
             return String.Format("{0}: {1}EUR ({2} in stock) | overall value: {3}", this.id, this.price, this.quantity, this.getValueOfProduct());
         }
 
+        // checks, if two products are the same
+        // two products are equal if their ids match
         public bool Equals(Product p)
         {
             if (this.id.Equals(p.id))
@@ -132,6 +149,7 @@ namespace product_inventory
             return false;
         }
 
+        // return the value of all items of this product in stock
         public decimal getValueOfProduct()
         {
             return price * quantity;

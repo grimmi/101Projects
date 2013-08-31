@@ -26,7 +26,7 @@ namespace fibonacci
                         throw new NumberTooSmallException();
                     }
                     else if (steps > 47)
-                    {   // bei fibonnaci-sequenzen > 47 läuft int über
+                    {   // with fibonacci values for inputs larger than 47, int is too small
                         throw new NumberTooBigException();
                     }
                     fibIter(steps);
@@ -57,8 +57,9 @@ namespace fibonacci
             for (int i = 0; i < steps; i++)
             {
                 fibSum = i == 0 ? 0 : i == 1 ? 1 : fibSum = f1 + f2; int tmp = f1; f1 = fibSum; f2 = tmp;
-                // Der Einzeiler oben ist gleichbedeutend mit dem folgenden if / else if / else - Konstrukt
+                // the one line above is equivalent to the if / else if / else construct below
                 /* 
+                // for 0 and 1 we return 1 as per definition
                 if (i == 0)
                 {
                     fibSum = 0;
@@ -67,16 +68,34 @@ namespace fibonacci
                 {
                     fibSum = 1;
                 }
+                // the 'real' fibonacci sequence: fib(x) = fib(x-1)+fib(x-2)
                 else
                 {
                     fibSum = f1 + f2;
                     int tmp = f1;
                     f1 = fibSum;
                     f2 = tmp;
+                 * 
                 }
                  */
                 Console.WriteLine("{0}", fibSum);
             }            
+        }
+    }
+
+    class NumberTooSmallException : Exception
+    {
+        public NumberTooSmallException()
+        {
+            this.Data.Add("numberMessage", "Enter a number greater than 2!");
+        }
+    }
+
+    class NumberTooBigException : Exception
+    {
+        public NumberTooBigException()
+        {
+            this.Data.Add("numberMessage", "Enter a number smaller than 47!");
         }
     }
 }

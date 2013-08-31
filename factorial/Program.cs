@@ -38,6 +38,7 @@ namespace factorial
 
         private static void factIter(int inputNumber)
         {
+            // start with 1, because we don't want to multiply by 0 ;)
             int fact = 1;
             for (int i = 1; i <= inputNumber; i++)
             {
@@ -48,6 +49,7 @@ namespace factorial
 
         private static int factRec(int inputNumber)
         {
+            // start from the top and go down to 1
             if (inputNumber > 0)
             {
                 return inputNumber * factRec(inputNumber - 1);

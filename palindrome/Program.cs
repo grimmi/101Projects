@@ -18,11 +18,14 @@ namespace palindrome
                 if (inputString.Length > 2)
                 {
                     bool isPalindrome = true;
+                    // we look at the second half of the string and compare it to the first half - if they match, we have a palindrome
                     for (int i = inputString.Length - 1; i >= inputString.Length / 2; i--)
                     {
                         if (!(inputString[i].Equals(inputString[(inputString.Length - 1) - i])))
                         {
+                            // if we find a non matching char, we break the for loop
                             isPalindrome = false;
+                            break;
                         }
                     }
                     if (isPalindrome)

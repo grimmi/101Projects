@@ -16,6 +16,7 @@ namespace stringReverse
                 string inputString = Console.ReadLine();
                 if (!inputString.Equals(""))
                 {
+                    // we juse an extension method to realise the reversing (fancy, yay!)
                     Console.WriteLine("Reverse String: {0}", inputString.reverseString());
                     break;
                 }
@@ -25,6 +26,21 @@ namespace stringReverse
                 }
             }
             Console.ReadKey();
+        }
+    }
+
+    static class stringExtension
+    {
+        // extension methods need to be public! seems clear... -.-
+        public static string reverseString(this string str)
+        {
+            string reverse = "";
+            // just run backwards through the string and return the new string
+            for (int i = str.Length - 1; i >= 0; i--)
+            {
+                reverse += str[i];
+            }
+            return reverse;
         }
     }
 }
