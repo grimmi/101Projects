@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 /*
  * Next Prime Number - Have the program find prime numbers until the user chooses to stop asking for the next one.
@@ -64,6 +62,7 @@ namespace nextPrime
             }
             catch (Exception e)
             {
+                Console.WriteLine("Choose between the shown options!");
                 Debug.WriteLine(e);
             }
         }
@@ -85,8 +84,7 @@ namespace nextPrime
                     // calculate the next bigger prime number
                     lastPrime = nextPrime(lastPrime + 1);
                     // format the number accordingly (1st, 2nd, 3rd, 4th, ...)
-                    string numberPrime = stndrdth(numberOfPrime);
-                    Console.WriteLine("{0} prime: {1}", numberPrime, lastPrime);
+                    Console.WriteLine("{0} prime: {1}", stndrdth(numberOfPrime), lastPrime);
                 }
                 else
                 {
@@ -104,7 +102,7 @@ namespace nextPrime
                 if (!spec.ToLower().Equals("n"))
                 {
                     int specPrime = int.Parse(spec);
-                    Console.WriteLine("The {0}. prime is: {1}", specPrime, getSpecificPrime(specPrime));
+                    Console.WriteLine("The {0} prime is: {1}", stndrdth(specPrime), getSpecificPrime(specPrime));
                 }
             }
             catch (Exception e)
