@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "countWords", "countWords\co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nextPrime", "nextPrime\nextPrime.csproj", "{499B37D8-F5C0-4ED7-AAD9-DD67A780801D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "specificPrime", "specificPrime\specificPrime.csproj", "{A06215CC-F4D1-4BD6-A2F2-87B6AC0502B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +68,10 @@ Global
 		{499B37D8-F5C0-4ED7-AAD9-DD67A780801D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{499B37D8-F5C0-4ED7-AAD9-DD67A780801D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{499B37D8-F5C0-4ED7-AAD9-DD67A780801D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A06215CC-F4D1-4BD6-A2F2-87B6AC0502B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A06215CC-F4D1-4BD6-A2F2-87B6AC0502B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A06215CC-F4D1-4BD6-A2F2-87B6AC0502B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A06215CC-F4D1-4BD6-A2F2-87B6AC0502B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
