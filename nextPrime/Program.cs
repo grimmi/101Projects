@@ -20,7 +20,7 @@ namespace nextPrime
         {
             primes = new List<int>();
             primes.Add(2);
-            int lastPrime = 0;
+            int lastPrime = 1;
             int numberOfPrime = 0;
             while (true)
             {
@@ -34,7 +34,7 @@ namespace nextPrime
                 {
                     while (true)
                     {
-                        Console.Write("Please enter which prime you want to display (enter 'n' to return to the main program): ");
+                        Console.Write("Please enter which prime you want to display: ");
                         try
                         {
                             string spec = Console.ReadLine();
@@ -60,15 +60,28 @@ namespace nextPrime
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine(e);
                             Console.WriteLine("Invalid input! Please enter an integer number or 'n' to return to the main program!");
                         }
+                    }
+                }
+                else if (inputString.ToLower().Equals("c"))
+                {
+                    Console.WriteLine("Enter an integer to which you want the closest prime number: ");
+                    try
+                    {
+                        int target = int.Parse(Console.ReadLine());
+                        int closePrime = primeClosestTo(target);
+                        Console.WriteLine("The closest prime to {0} is: {1}", target, closePrime);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Invalid input! Please enter an integer number!");
                     }
                 }
                 else
                 {
                     numberOfPrime++;
-                    lastPrime = getSpecificPrime(numberOfPrime);
+                    lastPrime = nextPrime(lastPrime + 1);
                     string numberPrime = stndrdth(numberOfPrime);
                     Console.WriteLine("{0} prime: {1}", numberPrime, lastPrime);
                 }
@@ -136,6 +149,7 @@ namespace nextPrime
             sw.Start();
             if (step > primes.Count())
             {
+                Console.WriteLine("Calculated from the {0}. prime ({1})", primes.Count(), primes.Last());
                 int lastPrime = primes.Last();
                 for (int i = primes.Count(); i < step; i++)
                 {
@@ -150,6 +164,24 @@ namespace nextPrime
                 sw.Stop();
                 Console.WriteLine("With lookup, this took {0}ms", sw.ElapsedMilliseconds);
                 return primes[step-1];
+            }
+        }
+
+        public static int primeClosestTo(int target)
+        {
+            int prime = 2;
+            while (nextPrime(prime + 1) < target)
+            {
+                prime = nextPrime(prime + 1);
+            }
+            int biggerPrime = nextPrime(prime + 1);
+            if ((target - prime) > (biggerPrime - target))
+            {
+                return biggerPrime;
+            }
+            else
+            {
+                return prime;
             }
         }
     }
