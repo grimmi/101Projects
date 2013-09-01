@@ -124,6 +124,7 @@ namespace nextPrime
             Console.WriteLine("Enter an integer to which you want the closest prime number: ");
             try
             {
+                // if we have no prime numbers calculated, we need at least the 2 so the lookup works
                 if (primes.Count() == 0)
                 {
                     primes.Add(2);
@@ -155,22 +156,29 @@ namespace nextPrime
         private static string stndrdth(int numberOfPrime)
         {
             string primeString = numberOfPrime.ToString();
+            // last char
             char lastChar = primeString.Last();
+            // the last two chars - we need those for 11, 12, 13
+            string lastTwo = "";
+            if (numberOfPrime > 10)
+            {   // if the number is > 10, we can safely take Length - 2
+                lastTwo = primeString.Substring(primeString.Length - 2);
+            }
             // the endings for english numbers
             string[] endings = {"st","nd","rd","th"};
             string ending = "";
             // all numbers ending on 1 get 'st' - except the eleven!
-            if (lastChar.Equals('1') && numberOfPrime != 11)
+            if (lastChar.Equals('1') && !lastTwo.Equals("11"))
             {
                 ending = endings[0];
             }
             // same as with the 1 at the end, here we have to beware of the twelve
-            else if (lastChar.Equals('2') && numberOfPrime != 12)
+            else if (lastChar.Equals('2') && !lastTwo.Equals("12"))
             {
                 ending = endings[1];
             }
             // ... and thirteen
-            else if (lastChar.Equals('3') && numberOfPrime != 13)
+            else if (lastChar.Equals('3') && !lastTwo.Equals("13"))
             {
                 ending = endings[2];
             }
@@ -227,7 +235,7 @@ namespace nextPrime
             // we only have to do calculations if we need a higher prime than we already calculated
             if (step > primes.Count())
             {
-                Console.WriteLine("Calculated from the {0}. prime ({1})", primes.Count(), primes.Last());
+                Console.WriteLine("Calculated from the {0} prime ({1})", stndrdth(primes.Count()), primes.Last());
                 // we use the highest calculated prime number as starting point
                 int lastPrime = primes.Last();
                 for (int i = primes.Count(); i < step; i++)
@@ -242,8 +250,9 @@ namespace nextPrime
             {
                 // the step is smaller than the amount of primes already calculated, so we look it up in the list
                 sw.Stop();
+                int specPrime = primes[step - 1];
                 Console.WriteLine("With lookup, this took {0}ms", sw.ElapsedMilliseconds);
-                return primes[step-1];
+                return specPrime;
             }
         }
 
