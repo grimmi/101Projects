@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 /*
@@ -199,8 +201,14 @@ namespace shapes
     {
         public InvalidAmountOfSidesException(int valid, int supplied)
         {
-            this.Data["valid"] = valid;
-            this.Data["supplied"] = supplied;
+            this.Data["validSides"] = valid;
+            this.Data["suppliedSides"] = supplied;
+            Debug.WriteLine("Invalid amount of sides! Valid: {0} - Supplied: {1}", valid, supplied);
+            Debug.WriteLine("Data:");
+            foreach (DictionaryEntry de in this.Data)
+            {
+                Debug.WriteLine("Key: {0}, Value: {1}",de.Key.ToString(),de.Value.ToString());
+            }
         }
     }
 }
